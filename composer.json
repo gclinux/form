@@ -1,0 +1,20 @@
+{
+    "name": "gclinux/form",
+    "type": "library",
+    "description": "使用PHP方便创建一些表单控件,之前用thinkphp太揪心了,特别是遇到select的时候",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "gclinux",
+            "email": "os.debian@gmail.com"
+        }
+    ],
+    "require": {
+    },
+
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    }
+}
