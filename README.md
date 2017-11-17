@@ -93,4 +93,13 @@ $f->select('test',
 $f->textarea('name','the value');
 
 ```
+## 在thinkphp里面使用
+安装后
+composer require gclinux/form
+
+在需要用的模版上 例如 view/index/index.html 里
+```
+{~$f=new\gclinux\Form()}
+{:$f->input('test','')}
+```
 
