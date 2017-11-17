@@ -99,7 +99,7 @@ composer require gclinux/form
 
 在需要用的模版上 例如 view/index/index.html 里
 ```
-{~$f=new\gclinux\Form()}
+{~$f = new \gclinux\Form()}
 {:$f->input('test','')}
 ```
 
