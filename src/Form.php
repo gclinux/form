@@ -14,7 +14,7 @@ class Form{
         return $this;
     }
     function allowNum($val=true){
-        $this->protected = $val;
+        $this->_allow_number_val = $val;
         return $this;
     }
     /**
