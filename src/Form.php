@@ -2,6 +2,8 @@
 namespace gclinux;
 class Form{
     protected $_defaultAttr=['class'=>'form-control'];
+    protected $_allow_number_val = false;
+    protected $_placeholder='';
     /**
      * 设置默认属性
      * @param Array|array $attr 属性数组
@@ -10,6 +12,27 @@ class Form{
     function setAttr(Array $attr=['class'=>'form-control']){
         $this->defaultAttr = $attr;
         return $this;
+    }
+    function allowNum($val=true){
+        $this->protected = $val;
+        return $this;
+    }
+    /**
+     * placeholder属性设置
+     * @param  String $placeholder [description]
+     * @return [type]              [description]
+     */
+    function placeholder(String $placeholder){
+        $this->placeholder = $placeholder;
+        return $this;
+    }
+    /**
+     * 别称,懒得写这么长的东西
+     * @param  String $ph [description]
+     * @return [type]     [description]
+     */
+    function ph(String $ph){
+        return $this->placeholder($ph);
     }
 
     /**
@@ -37,7 +60,11 @@ class Form{
 
             }else{
                 $groupName !== null and $oldGroup === null and $re .= '<optgroup label="'.$groupName.'">'."\n" and $oldGroup = $groupName  ;
-                $key = is_int($k)?$v:$k;
+                if($this->_allow_number_val){
+                    $key = $k;
+                }else{
+                    $key = is_int($k)?$v:$k;
+                }
                 $select = ($key == $val)?'selected':'';
                 $re .= '<option value="'.$key.'" '.$select.'>'.$v.'</option>'."\n";
                 
@@ -65,7 +92,7 @@ class Form{
         $type = strtolower($type);
         $nameAsId = ($type != 'radio');
         $attr = $this->_attr($attr,$name,$nameAsId);
-        return '<input type="'.$type.'" name="'.$name.'" '.$attr.' value="'.$val.'">';
+        return '<input placeholder="'.$this->_placeholder.'" type="'.$type.'" name="'.$name.'" '.$attr.' value="'.$val.'">';
     }
 
     function textarea(String $name,$val='',Array $attr=[]){
